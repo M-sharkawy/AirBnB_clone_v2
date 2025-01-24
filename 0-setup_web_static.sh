@@ -21,13 +21,6 @@ fi
 ln -s /data/web_static/releases/test/ /data/web_static/current
 sudo chown -R ubuntu:ubuntu /data/
 
-NGINX_CONFIG="/etc/nginx/sites-available/default"
-sudo sed -i '/location \/hbnb_static {/,+2d' $NGINX_CONFIG  # Remove old config if exists
-sudo bash -c "cat >> $NGINX_CONFIG" <<EOF
-location /hbnb_static {
-    alias /data/web_static/current;
-    index index.html;
-}
-EOF
+sed -i '38i\\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n' /etc/nginx/sites-available/default
 
-sudo systemctl restart nginx
+sudo service nginx restart
