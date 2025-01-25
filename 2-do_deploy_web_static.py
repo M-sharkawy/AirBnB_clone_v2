@@ -21,13 +21,13 @@ def do_deploy(archive_path):
 
     try:
         put(archive_path, remote_path)
-        run(f"mkdir -p {_path}")
-        run(f"tar -xzvf {file_name} -C {_path}")
-        run(f"rm -f {remote_path}{file_name}")
-        run(f"mv {_path}/web_static/* {_path}")
-        run(f"rm -rf {_path}/web_static")
-        run(f"rm -rf /data/web_static/current")
-        run(f"ln -s {_path} /data/web_static/current")
+        sudo(f"mkdir -p {_path}")
+        sudo(f"tar -xzvf {file_name} -C {_path}")
+        sudo(f"rm -f {remote_path}{file_name}")
+        sudo(f"mv {_path}/web_static/* {_path}")
+        sudo(f"rm -rf {_path}/web_static")
+        sudo(f"rm -rf /data/web_static/current")
+        sudo(f"ln -s {_path} /data/web_static/current")
         return True
 
     except Exception:
