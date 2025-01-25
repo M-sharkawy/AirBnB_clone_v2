@@ -7,6 +7,7 @@ from datetime import datetime
 
 
 def do_pack():
+    '''do packer'''
     time = datetime.utcnow().strftime('%Y%m%d%H%M%S')
     file_name = "versions/web_static_{}.tgz".format(time)
     try:
