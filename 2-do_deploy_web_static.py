@@ -2,19 +2,20 @@
 '''module to deploy the program version'''
 
 from fabric.api import *
+import os.path
 
-env.user = "ubuntu"
+env.user = 'ubuntu'
 env.hosts = ['100.26.253.64', '54.152.64.223']
 
 
 def do_deploy(archive_path):
     '''deploy the archived files'''
 
-    if not archive_path:
+    if os.path.exists(archive_path) is False:
         return False
 
     file_name = archive_path.split("/")[-1]
-    no_ext = file_name.replace(".tgz", "")
+    no_ext = file_name.split(".")[0]
     remote_path = "/tmp/"
     _path = f"/data/web_static/releases/{no_ext}"
 
