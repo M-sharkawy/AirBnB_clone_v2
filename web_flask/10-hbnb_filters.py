@@ -15,13 +15,12 @@ def close_session(exception):
 
 
 @app.route("/hbnb_filters", strict_slashes=False)
-def list_states(id=None):
+def  hbnb_filters():
     """renders all states in html"""
     states = storage.all(State)
     amenities = storage.all(Amenity)
-
-    return render_template("10-hbnb_filters.html", states=states.values(),
-                           amenities=amenities.values())
+    return render_template("10-hbnb_filters.html", states=states,
+                           amenities=amenities)
 
 
 if __name__ == "__main__":
